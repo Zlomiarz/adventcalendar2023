@@ -8,10 +8,12 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
-    <File Name="day2.hpp"/>
-    <File Name="day1.hpp"/>
-    <File Name="day1.cpp"/>
-    <File Name="main.cpp"/>
+    <File Name="src/day1.cpp"/>
+    <File Name="src/base_class.hpp"/>
+    <File Name="src/main.cpp"/>
+    <File Name="src/day2.hpp"/>
+    <File Name="src/day1.hpp"/>
+    <File Name="src/base_class.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
