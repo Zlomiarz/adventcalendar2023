@@ -2,6 +2,8 @@
 
 #include "base_class.hpp"
 
+#include <tuple>
+
 class Day2:Base{
 public:
     Day2(const std::string filename):Base(filename){};
@@ -9,6 +11,6 @@ public:
     int getResult();
 private:
     std::vector<std::string> tokenize(std::string str, char delimiter);
-    bool roundIsOK(std::string round);
-    bool processGame(std::string game);
+    std::tuple<int, int, int> getNumberOfCubes(std::string round);
+    int processGame(std::string game);
 };

@@ -1,7 +1,5 @@
 #include "day2.hpp"
 
-#include <iostream>
-
 inline std::string ltrim(std::string s, const char* t = " \t\n\r\f\v")
 {
     s.erase(0, s.find_first_not_of(t));
@@ -23,40 +21,40 @@ int Day2::getResult(){
     int ret = 0;
     for (auto line:file){
         auto a = tokenize(line, ':');
-        int game_number = std::stoi(a[0].substr(5));
-        if (processGame(a[1])){
-            ret += game_number;
-            std::cout << game_number << "\n";
-        }
+        ret += processGame(a[1]);
     }
     return ret;
 }
 
-bool Day2::processGame(std::string game){
+int Day2::processGame(std::string game){
+    int max_red = 0;
+    int max_green = 0;
+    int max_blue = 0;
     auto rounds = tokenize(game, ';');
     for (auto round:rounds){
-        if (!roundIsOK(round))
-            return false;
+        const auto [red, green, blue] = getNumberOfCubes(round);
+        max_red = std::max(max_red, red);
+        max_green = std::max(max_green, green);
+        max_blue = std::max(max_blue, blue);
     }
-    return true;
+    return max_red*max_green*max_blue;
 }
 
-bool Day2::roundIsOK(std::string round){
-    const auto red_limit = 12;
-    const auto green_limit = 13;
-    const auto blue_limit = 14;
-
+std::tuple<int, int, int> Day2::getNumberOfCubes(std::string round){
+    int red = 0;
+    int blue = 0;
+    int green = 0;
     auto colors = tokenize(round, ',');
     for (auto color:colors){
         auto p = tokenize(color, ' ');
-        if (p[1] == "red" and std::stoi(p[0])>red_limit)
-            return false;
-        if (p[1] == "blue" and std::stoi(p[0])>blue_limit)
-            return false;
-        if (p[1] == "green" and std::stoi(p[0])>green_limit)
-            return false;
+        if (p[1] == "red")
+            red = std::stoi(p[0]);
+        if (p[1] == "blue")
+            blue = std::stoi(p[0]);
+        if (p[1] == "green")
+            green = std::stoi(p[0]);
     }
-    return true;
+    return std::make_tuple(red, green, blue);
 }
 
 std::vector<std::string> Day2::tokenize(std::string str, char delimiter){
