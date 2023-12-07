@@ -85,6 +85,7 @@ link_directories(
 
 # Define the CXX sources
 set ( CXX_SRCS
+    ${CMAKE_CURRENT_LIST_DIR}/src/day2.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/day1.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/base_class.cpp

@@ -6,10 +6,17 @@ int main(int, char**)
 {
     try{
         Day1 day1("input_day1.txt");
-        std::cout << day1.getResult2() << std::endl;
+        std::cout << "Day1: " << day1.getResult2() << std::endl;
     }
     catch (...){
         std::cout << "Day1: something wrong!\n";
     }
-	return 0;
+    try{
+        Day2 day2("input_day2.txt");
+        std::cout << "Day2: " << day2.getResult() << std::endl;
+    }
+    catch (...){
+        std::cout << "Day2: something wrong!\n";
+    }
+    return 0;
 }
