@@ -1,22 +1,24 @@
 #include <iostream>
+#include <typeinfo>
 #include "day1.hpp"
 #include "day2.hpp"
+#include "day3.hpp"
+
+template <typename T>
+void doJob(const std::string &infile){
+    try {
+        T object(infile);
+        std::cout << typeid(T).name() << ": " << object.getResult() << std::endl;
+    }
+    catch (...){
+        std::cout << typeid(T).name() << ": something wrong!\n";
+    }
+}
 
 int main(int, char**)
 {
-    try{
-        Day1 day1("input_day1.txt");
-        std::cout << "Day1: " << day1.getResult2() << std::endl;
-    }
-    catch (...){
-        std::cout << "Day1: something wrong!\n";
-    }
-    try{
-        Day2 day2("input_day2.txt");
-        std::cout << "Day2: " << day2.getResult() << std::endl;
-    }
-    catch (...){
-        std::cout << "Day2: something wrong!\n";
-    }
+    doJob<Day1>("input_day1.txt");
+    doJob<Day2>("input_day2.txt");
+    doJob<Day3>("input_day3.txt");
     return 0;
 }

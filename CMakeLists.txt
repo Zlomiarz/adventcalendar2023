@@ -85,10 +85,11 @@ link_directories(
 
 # Define the CXX sources
 set ( CXX_SRCS
-    ${CMAKE_CURRENT_LIST_DIR}/src/day2.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/src/day1.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
     ${CMAKE_CURRENT_LIST_DIR}/src/base_class.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/main.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/day3.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/day1.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/src/day2.cpp
 )
 
 set_source_files_properties(
