@@ -6,26 +6,30 @@
 
 int Day4::getResult(){
     int ret = 0;
+    std::deque<int> copies(file.size(), 1);
     for (auto line:file){
-        ret += processLine(line);
+        ret += processLine(line, copies);
+        copies.erase(copies.begin());
     }
     return ret;
 }
 
-int Day4::processLine(std::string line){
+int Day4::processLine(std::string line, std::deque<int> &copies){
     auto setsStart = line.find(':');
     auto setsDelimiter = line.find('|');
     auto set1 = parseSet(line.substr(setsStart+1, setsDelimiter-setsStart-1));
     auto set2 = parseSet(line.substr(setsDelimiter+1));
     int count = 0;
+    int n = copies[0];
     for (auto i:set1){
         if (std::find(set2.begin(), set2.end(), i) != set2.end()){
             count++;
         }
     }
-    if (count == 0)
-        return 0;
-    return 0x1<<(count-1);
+    for (int i=0;i<count;++i){
+        copies[i+1] += n;
+    }
+    return n;
 }
 
 std::vector<int> Day4::parseSet(std::string str){
