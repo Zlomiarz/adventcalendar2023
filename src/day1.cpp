@@ -61,5 +61,3 @@ int Day1::getLastDigit(std::string str){
     }
     return ret;
 }
-
-

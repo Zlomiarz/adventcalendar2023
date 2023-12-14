@@ -50,7 +50,7 @@ std::vector<int> Day3::findAdjacentNumbers(int x, int y){
             addNumberToVector(x+1, y-1);
         }
     }
-    if (y+1<file.size()){
+    if (y+1<(int)file.size()){
         if (isdigit(file[y+1][x])){
             addNumberToVector(x, y+1);
         } else {

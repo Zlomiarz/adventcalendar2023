@@ -8,6 +8,8 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
+    <File Name="src/day4.cpp"/>
+    <File Name="src/day4.hpp"/>
     <File Name="src/day3.hpp"/>
     <File Name="src/day3.cpp"/>
     <File Name="src/day2.cpp"/>
