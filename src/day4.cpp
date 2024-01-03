@@ -1,8 +1,6 @@
 #include "day4.hpp"
-#include <fstream>
-#include <algorithm>
 
-#include <iostream>
+#include <algorithm>
 
 int Day4::getResult(){
     int ret = 0;
