@@ -23,6 +23,6 @@ int main(int, char**)
     doJob<Day2>("input_day2.txt");
     doJob<Day3>("input_day3.txt");
     doJob<Day4>("input_day4.txt");
-    doJob<Day5>("input_day5.txt");
+    doJob<Day5>("test_day5.txt");
     return 0;
 }

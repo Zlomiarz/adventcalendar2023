@@ -3,31 +3,35 @@
 #include <algorithm>
 
 long Day5::getResult(){
-    std::vector<long> seeds;
     auto t = tokenize(file[0], ':');
-    seeds = getSeeds(t[1]);
+    auto seeds = getSeeds(t[1]);
     unsigned i = 2;
     while (i < file.size()){
 
-        long end = findRangeEnd(i);
-        auto rangeList = loadRanges(i+1, end);
-        applyRangeToSeeds(seeds, rangeList);
+        long end = findRangeMappingEnd(i);
+        auto rangeList = loadRangeMappings(i, end);
+        seeds = applyMapping(seeds, rangeList);
         i = end+1;
     }
-    std::sort(seeds.begin(), seeds.end());
-    return seeds[0];
+    std::sort(seeds.begin(), seeds.end(), [](const auto &o1, const auto &o2) -> bool{
+        return o1.start < o2.start;
+    });
+
+    return seeds[0].start;
 }
 
-std::vector<long> Day5::getSeeds(std::string str){
-    std::vector<long> ret;
-    for (auto t:tokenize(str, ' ')){
-        if (t.size()>0)
-            ret.push_back(std::stol(t));
+std::vector<Range> Day5::getSeeds(std::string str){
+    std::vector<Range> ret;
+    auto tokens = tokenize(str, ' ');
+    for (auto i=0u;i<tokens.size();i+=2){
+        auto start = std::stol(tokens[i]);
+        auto len = std::stol(tokens[i+1]);
+        ret.push_back(Range(start, start+len-1));
     }
     return ret;
 }
 
-int Day5::findRangeEnd(int begin){
+int Day5::findRangeMappingEnd(int begin){
     for (unsigned i=begin;i<file.size();++i){
         if (!std::isdigit(file[i][0]))
             return i;
@@ -35,21 +39,26 @@ int Day5::findRangeEnd(int begin){
     return file.size();
 }
 
-RangeList Day5::loadRanges(int begin, int end){
+RangeList Day5::loadRangeMappings(int begin, int end){
     RangeList ret;
     for (int i=begin;i<end;++i){
         auto t = tokenize(file[i], ' ');
         if (t.size() == 3){
-            ret.addRange(Range(std::stol(t[1]), std::stol(t[2]), std::stol(t[0])));
+            long start = std::stol(t[1]);
+            long lenght = std::stol(t[2]);
+            long destStart = std::stol(t[0]);
+            ret.addRange(RangeMapping(start, start+lenght-1, destStart));
         }
     }
     return ret;
 }
 
-void Day5::applyRangeToSeeds(std::vector<long>& seeds, RangeList rangeList){
-    for (auto& s:seeds){
-        auto t = rangeList.mapValue(s);
-        s = t;
+std::vector<Range> Day5::applyMapping(std::vector<Range> seeds, RangeList rangeList){
+    std::vector<Range> ret;
+    for (auto s:seeds){
+        auto t = rangeList.applyRangeMapping(s);
+        ret.insert(ret.end(), t.begin(), t.end());
     }
+    return ret;
 }
 
