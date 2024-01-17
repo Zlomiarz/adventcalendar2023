@@ -35,6 +35,7 @@ set ( TARGET_SRCS
 )
 
 set ( COMMON_SRCS
+    src/day6.cpp
     src/day5.cpp
     src/day2.cpp
     src/day1.cpp
