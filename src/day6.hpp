@@ -7,6 +7,6 @@ public:
     Day6(const std::string filename):Base(filename){}
     long getResult();
 private:
-    std::vector<int> parseline(std::string);
-    int numberOfWaysToWinRace(int, int);
+    long parseline(std::string);
+    int numberOfWaysToWinRace(long, long);
 };

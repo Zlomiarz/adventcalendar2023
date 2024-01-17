@@ -1,33 +1,26 @@
 #include "day6.hpp"
 
 #include <algorithm>
-#include <iostream>
+
 long Day6::getResult(){
     int ret = 1;
-    auto times = parseline(file[0]);
-    auto distances = parseline(file[1]);
-    for (unsigned i=0;i<times.size();++i){
-        ret *= numberOfWaysToWinRace(times[i], distances[i]);
-    }
+    auto time = parseline(file[0]);
+    auto distance = parseline(file[1]);
+    ret = numberOfWaysToWinRace(time, distance);
     return ret;
 }
 
-std::vector<int> Day6::parseline(std::string str){
-    std::vector<int> ret;
-    auto temp = tokenize(str, ':');
-    auto tokens = tokenize(temp[1], ' ');
-    for (auto t:tokens){
-        if (t.size()>0)
-            ret.push_back(std::stoi(t));
-        
-    }
-    return ret;
+long Day6::parseline(std::string in){
+    auto temp = tokenize(in, ':');
+    auto str = temp[1];
+    str.erase(remove_if(str.begin(), str.end(), isspace), str.end());
+    return std::stol(str);
 }
 
-int Day6::numberOfWaysToWinRace(int time, int record){
+int Day6::numberOfWaysToWinRace(long time, long record){
     int ret = 0;
-    for (int accelerationTime=1;accelerationTime<time;++accelerationTime){
-        int distance = accelerationTime*(time-accelerationTime);
+    for (long accelerationTime=1;accelerationTime<time;++accelerationTime){
+        long distance = accelerationTime*(time-accelerationTime);
         if (distance>record)
             ret++;
     }
