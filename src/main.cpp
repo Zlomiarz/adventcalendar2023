@@ -6,6 +6,7 @@
 #include "day4.hpp"
 #include "day5.hpp"
 #include "day6.hpp"
+#include "day7.hpp"
 
 template <typename T>
 void doJob(const std::string &infile){
@@ -26,5 +27,6 @@ int main(int, char**)
     doJob<Day4>("input_day4.txt");
     doJob<Day5>("input_day5.txt");
     doJob<Day6>("input_day6.txt");
+    doJob<Day7>("input_day7.txt");
     return 0;
 }
