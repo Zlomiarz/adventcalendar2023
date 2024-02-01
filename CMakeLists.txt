@@ -6,7 +6,7 @@ enable_language(CXX C ASM)
 
 project(adventcalendar2023)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Compiler options
@@ -27,7 +27,7 @@ add_definitions(-m64)
 add_definitions(-O0)
 add_definitions(-gdwarf-2)
 add_definitions(-Wextra)
-add_definitions(-std=c++17)
+add_definitions(-std=c++20)
 add_definitions(-Wall)
 
 set ( TARGET_SRCS
@@ -48,6 +48,7 @@ set ( COMMON_SRCS
 set ( TESTS_SRCS
     tests/main.cpp
     tests/day5.cpp
+    tests/day7.cpp
 )
 
 include(GoogleTest)
@@ -56,7 +57,7 @@ find_package(GTest REQUIRED)
 
 set_source_files_properties(
     ${COMMON_SRCS} PROPERTIES COMPILE_FLAGS 
-    " -Wredundant-decls -Wmain -Wundef -Winline -Wswitch-enum -Wmissing-declarations -Wnon-virtual-dtor -Wzero-as-null-pointer-constant -Winit-self -Wshadow -Wswitch-default -Wfloat-equal -Wunreachable-code -m64 -O0 -gdwarf-2 -Wextra -std=c++17 -Wall")
+    " -Wredundant-decls -Wmain -Wundef -Winline -Wswitch-enum -Wmissing-declarations -Wnon-virtual-dtor -Wzero-as-null-pointer-constant -Winit-self -Wshadow -Wswitch-default -Wfloat-equal -Wunreachable-code -m64 -O0 -gdwarf-2 -Wextra -std=c++20 -Wall")
 
 
 add_executable(adventcalendar2023 ${TARGET_SRCS} ${COMMON_SRCS} )
