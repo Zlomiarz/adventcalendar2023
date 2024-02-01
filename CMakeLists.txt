@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
 
-enable_testing()
-
 enable_language(CXX C ASM)
 
 project(adventcalendar2023)
@@ -60,6 +58,8 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
+enable_testing()
+
 set_source_files_properties(
     ${COMMON_SRCS} PROPERTIES COMPILE_FLAGS 
     " -Wredundant-decls -Wmain -Wundef -Winline -Wswitch-enum -Wmissing-declarations -Wnon-virtual-dtor -Wzero-as-null-pointer-constant -Winit-self -Wshadow -Wswitch-default -Wfloat-equal -Wunreachable-code -m64 -O0 -gdwarf-2 -Wextra -std=c++20 -Wall")
@@ -70,6 +70,7 @@ add_executable(adventcalendar2023 ${TARGET_SRCS} ${COMMON_SRCS} )
 add_executable(tests ${COMMON_SRCS} ${TESTS_SRCS} )
 target_include_directories(tests PRIVATE .)
 target_link_libraries(tests GTest::gtest_main )
+target_link_libraries(tests GTest::gmock_main )
 
 include(GoogleTest)
 gtest_discover_tests(tests)
