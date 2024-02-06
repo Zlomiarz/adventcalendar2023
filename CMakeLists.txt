@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-enable_language(CXX C ASM)
+enable_language(CXX ASM)
 
 project(adventcalendar2023)
 
@@ -41,6 +41,7 @@ set ( COMMON_SRCS
     src/base_class.cpp
     src/day4.cpp
     src/day7.cpp
+    src/day8.cpp
 )
 
 set ( TESTS_SRCS
