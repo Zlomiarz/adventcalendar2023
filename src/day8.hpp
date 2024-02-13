@@ -14,6 +14,8 @@ public:
     
     using Node=std::tuple<string, std::pair<string, string>>;
     using GraphType=map<string, pair<string, string>>;
+
+private:
     class NavigationString{
         public:
         NavigationString(string s):navigation(s){}
@@ -22,13 +24,17 @@ public:
             index = (index+1)% navigation.size();
             return c;
         }
+        void reset(){
+            index = 0;
+        }
         private:
             string navigation;
             int index=0;
     };
+    
+    long calculateDistanceToZNode(GraphType graph, string startPoint, NavigationString navigation);
+
     GraphType parseFile();
     Node parseLine(string s);
-
-private:
-
+    std::vector<string> startNodes;
 };
