@@ -14,7 +14,7 @@ long Day9::getResult(){
 
 long Day9::calculateValue(const std::string& line){
     auto values = tokenizeInt(line, ' ');
-    return calculateValue(values)+values.back();
+    return values.front() - calculateValue(values);
 }
 
 long Day9::calculateValue(const std::vector<int>& values){
@@ -24,7 +24,7 @@ long Day9::calculateValue(const std::vector<int>& values){
     }
     if (std::any_of(calculated.begin(), calculated.end(), [](int i){ return i != 0;})){
         auto v = calculateValue(calculated);
-        return v + calculated.back();
+        return calculated.front() - v;
     }
     
     return 0;
