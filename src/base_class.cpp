@@ -47,3 +47,15 @@ std::vector<std::string> Base::tokenize(std::string str, char delimiter){
     ret.push_back(trim(str.substr(start)));
     return ret;
 }
+
+std::vector<int> Base::tokenizeInt(std::string str, char delimiter){
+    std::vector<int> ret;
+    size_t start = 0;
+    size_t pos;
+    while (pos = str.find(delimiter, start), pos != std::string::npos){
+        ret.push_back(std::stoi(trim(str.substr(start, pos-start))));
+        start = pos+1;
+    }
+    ret.push_back(std::stoi(trim(str.substr(start))));
+    return ret;
+}

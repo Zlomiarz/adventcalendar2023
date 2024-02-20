@@ -8,5 +8,6 @@ public:
 protected:
     void loadFile(const std::string filename);
     std::vector<std::string> tokenize(std::string str, char delimiter);
+    std::vector<int> tokenizeInt(std::string str, char delimiter);
     std::vector<std::string> file;
 };

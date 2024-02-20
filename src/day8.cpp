@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <map>
 #include <regex>
-#include <iostream>
 
 template <typename T>
 T GDC(T a, T b){
