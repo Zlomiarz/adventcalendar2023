@@ -31,10 +31,11 @@ int Day4::processLine(std::string line, std::deque<int> &copies){
 }
 
 std::vector<int> Day4::parseSet(std::string str){
-    std::vector<int> ret;
+    /*std::vector<int> ret;
     auto strings = tokenize(str, ' ');
     for (auto s:strings)
         if (s.size()>0)
             ret.push_back(std::stoi(s));
-    return ret;
+    return ret;*/
+    return tokenizeInt(str, ' ');
 }

@@ -43,6 +43,7 @@ set ( COMMON_SRCS
     src/day7.cpp
     src/day8.cpp
     src/day9.cpp
+    src/day10.cpp
 )
 
 set ( TESTS_SRCS
