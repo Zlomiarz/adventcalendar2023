@@ -8,25 +8,25 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Compiler options
-add_definitions(-Wredundant-decls)
-add_definitions(-Wmain)
-add_definitions(-Wundef)
-add_definitions(-Winline)
-add_definitions(-Wswitch-enum)
-add_definitions(-Wmissing-declarations)
-add_definitions(-Wnon-virtual-dtor)
-add_definitions(-Wzero-as-null-pointer-constant)
-add_definitions(-Winit-self)
-add_definitions(-Wshadow)
-add_definitions(-Wswitch-default)
-add_definitions(-Wfloat-equal)
-add_definitions(-Wunreachable-code)
-add_definitions(-m64)
-add_definitions(-O0)
-add_definitions(-gdwarf-2)
-add_definitions(-Wextra)
-add_definitions(-std=c++20)
-add_definitions(-Wall)
+add_compile_options(-Wredundant-decls)
+add_compile_options(-Wmain)
+add_compile_options(-Wundef)
+add_compile_options(-Winline)
+add_compile_options(-Wswitch-enum)
+add_compile_options(-Wmissing-declarations)
+add_compile_options(-Wnon-virtual-dtor)
+add_compile_options(-Wzero-as-null-pointer-constant)
+add_compile_options(-Winit-self)
+add_compile_options(-Wshadow)
+add_compile_options(-Wswitch-default)
+add_compile_options(-Wfloat-equal)
+add_compile_options(-Wunreachable-code)
+add_compile_options(-m64)
+add_compile_options(-O0)
+add_compile_options(-gdwarf-2)
+add_compile_options(-Wextra)
+add_compile_options(-std=c++20)
+add_compile_options(-Wall)
 
 set ( TARGET_SRCS
     src/main.cpp
@@ -50,6 +50,7 @@ set ( TESTS_SRCS
     tests/main.cpp
     tests/day5.cpp
     tests/day7.cpp
+    tests/day10.cpp
 )
 
 include(FetchContent)
@@ -65,7 +66,7 @@ enable_testing()
 
 set_source_files_properties(
     ${COMMON_SRCS} PROPERTIES COMPILE_FLAGS 
-    " -Wredundant-decls -Wmain -Wundef -Winline -Wswitch-enum -Wmissing-declarations -Wnon-virtual-dtor -Wzero-as-null-pointer-constant -Winit-self -Wshadow -Wswitch-default -Wfloat-equal -Wunreachable-code -m64 -O0 -gdwarf-2 -Wextra -std=c++20 -Wall")
+    "")
 
 
 add_executable(adventcalendar2023 ${TARGET_SRCS} ${COMMON_SRCS} )

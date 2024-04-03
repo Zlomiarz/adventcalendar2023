@@ -23,6 +23,8 @@ Base::Base(const std::string filename){
     loadFile(filename);
 }
 
+Base::Base(const std::vector<std::string> &content):file(content){}
+
 void Base::loadFile(const std::string filename){
     std::ifstream in(filename);
     if (!in){

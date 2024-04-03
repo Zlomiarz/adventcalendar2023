@@ -6,17 +6,25 @@ enum Direction{
     South, West, East, North
 };
 
+using Point2d = std::pair<int, int>;
+using Shape2d = std::vector<Point2d>;
+
+int calculateArea(Shape2d shape);
+int calculateInteriorPoints(int area, int boundaryPoints);
+
 class Day10:public Base{
 public:
     Day10(const std::string filename):Base(filename){}
+    Day10(const std::vector<std::string> &content):Base(content){}
     long getResult();
-private:
-    std::vector<std::pair<int, int>> getMapDirections(std::pair<int, int> pos);
-    std::pair<int, int> findStartPos();
-    long findLoopLength(std::pair<int, int> start);
-    long findLoopLength(std::vector<std::pair<int, int>> stack);
+public:
+    Shape2d getMapDirections(Point2d pos);
+    Point2d findStartPos();
+    Shape2d findLoop(Point2d start);
+    long findLoopLength(Point2d start);
+    long findLoopLength(Shape2d& stack);
 
-    char getMapField(std::pair<int, int> pos){
+    char getMapField(Point2d pos){
         return file[pos.second][pos.first];
     }
 };

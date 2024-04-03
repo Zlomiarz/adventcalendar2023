@@ -5,6 +5,7 @@
 class Base{
 public:
     Base(const std::string filename);
+    Base(const std::vector<std::string> &content);
 protected:
     void loadFile(const std::string filename);
     std::vector<std::string> tokenize(std::string str, char delimiter);

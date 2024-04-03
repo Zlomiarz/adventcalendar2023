@@ -4,11 +4,12 @@
 
 long Day10::getResult(){
     auto start = findStartPos();
-    auto loopLenght = findLoopLength(start);
-    return loopLenght/2;
+    auto loop = findLoop(start);
+    auto area = calculateArea(loop);
+    return calculateInteriorPoints(area, loop.size());
 }
 
-std::pair<int, int> Day10::findStartPos(){
+Point2d Day10::findStartPos(){
     for (unsigned int y=0;y<file.size();++y){
         for (unsigned x=0;x<file[y].size();++x){
             if (file[y][x] == 'S')
@@ -18,13 +19,22 @@ std::pair<int, int> Day10::findStartPos(){
     return std::make_pair(-1, -1);
 }
 
-long Day10::findLoopLength(std::pair<int, int> start){
-    std::vector<std::pair<int, int>> stack;
+Shape2d Day10::findLoop(Point2d start){
+    Shape2d stack;
     stack.push_back(start);
-    return findLoopLength(stack);
+    findLoopLength(stack);
+    return stack;
 }
 
-long Day10::findLoopLength(std::vector<std::pair<int, int>> stack){
+long Day10::findLoopLength(Point2d start){
+    Shape2d stack;
+    stack.push_back(start);
+    auto loopLenght = findLoopLength(stack);
+    auto area = calculateArea(stack);
+    return calculateInteriorPoints(area, loopLenght);
+}
+
+long Day10::findLoopLength(Shape2d &stack){
     auto pos = stack.back();
     auto directions = getMapDirections(pos);
     for (auto p:directions){
@@ -47,8 +57,8 @@ long Day10::findLoopLength(std::vector<std::pair<int, int>> stack){
     return 0;
 }
 
-std::vector<std::pair<int, int>> Day10::getMapDirections(std::pair<int, int> pos){
-    std::vector<std::pair<int, int>> ret;
+Shape2d Day10::getMapDirections(Point2d pos){
+    Shape2d ret;
     switch (getMapField(pos)){
         case '|':
             ret.push_back(std::make_pair(pos.first, pos.second+1));
@@ -100,4 +110,23 @@ std::vector<std::pair<int, int>> Day10::getMapDirections(std::pair<int, int> pos
             break;
     }
     return ret;
+}
+
+//https://en.wikipedia.org/wiki/Shoelace_formula
+int calculateArea(Shape2d shape){
+    if (shape.size()<3)
+        return -1;
+
+    shape.push_back(shape.front());
+    int ret = 0;
+    for (unsigned i=1;i<shape.size();i++){
+        ret += -shape[i-1].first * -shape[i].second;
+        ret -= -shape[i].first * -shape[i-1].second;
+    }
+    return std::abs(ret/2);
+}
+
+//https://en.wikipedia.org/wiki/Pick%27s_theorem
+int calculateInteriorPoints(int area, int boundaryPoints){
+    return area + 1 - boundaryPoints/2;
 }
